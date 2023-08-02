@@ -238,6 +238,36 @@ export function FXE_sidebar() {
                 },
             ]
         },
+        {
+            id: 10,
+            title: FXE_language("document"),
+            path: FXE_language("document"),
+            icon: <>
+                <i className="ki-duotone ki-directbox-default fs-2">
+                    <i className="path1"></i>
+                    <i className="path2"></i>
+                    <i className="path3"></i>
+                    <i className="path4"></i>
+                </i>
+            </>,
+            subs: [
+                {
+                    id: 101,
+                    title: FXE_language("new"),
+                    path: `${route}/${FXE_seo(FXE_language("document").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
+                },
+                {
+                    id: 102,
+                    title: FXE_language("list"),
+                    path: `${route}/${FXE_seo(FXE_language("document").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
+                },
+            ]
+        },
+
+
+
+
+        
     ]
 
     const ActiveUrl = (path) => {

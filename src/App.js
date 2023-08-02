@@ -62,6 +62,9 @@ function App() {
       <Route path={`${route}/${FXE_seo(FXE_language("blog").toLowerCase())}/${FXE_seo(FXE_language("new").toLowerCase())}`} element={<FXE_blog_new />} />
       <Route path={`${route}/${FXE_seo(FXE_language("blog").toLowerCase())}/${FXE_seo(FXE_language("list").toLowerCase())}`} element={<FXE_blog_list />} />
 
+      <Route path={`${route}/${FXE_seo(FXE_language("document").toLowerCase())}/${FXE_seo(FXE_language("new").toLowerCase())}`} element={<FXE_blog_new />} />
+      <Route path={`${route}/${FXE_seo(FXE_language("document").toLowerCase())}/${FXE_seo(FXE_language("list").toLowerCase())}`} element={<FXE_blog_list />} />
+
 
     </Routes>
   );
