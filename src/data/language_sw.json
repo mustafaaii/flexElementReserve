@@ -1,0 +1,26 @@
+{
+    "sidebar": [
+        {
+            "title_tr": "Panel",
+            "title_en": "Dashboard"
+        },
+        {
+            "title_tr": "Rezervasyon",
+            "title_en": "Rezervation"
+        },
+        {
+            "title_tr": "Ürünler",
+            "title_en": "Product"
+        }
+    ],
+    "global": [
+        {
+            "title_tr": "Yeni",
+            "title_en": "New"
+        },
+        {
+            "title_tr": "Liste",
+            "title_en": "List"
+        }
+    ]
+}
