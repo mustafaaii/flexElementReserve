@@ -40,8 +40,8 @@ export function FXE_sidebar() {
         },
         {
             id: 2,
-            title: FXE_language("reservation"),
-            path: FXE_language("reservation"),
+            title: FXE_language("reservations"),
+            path: FXE_language("reservations"),
             icon: <>
                 <i className="ki-duotone ki-directbox-default fs-2">
                     <i className="path1"></i>
@@ -60,6 +60,31 @@ export function FXE_sidebar() {
                     id: 22,
                     title: FXE_language("list"),
                     path: `${route}/${FXE_seo(FXE_language("reservation").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
+                },
+            ]
+        },
+        {
+            id: 11,
+            title: FXE_language("menus"),
+            path: FXE_language("menus"),
+            icon: <>
+                <i className="ki-duotone ki-directbox-default fs-2">
+                    <i className="path1"></i>
+                    <i className="path2"></i>
+                    <i className="path3"></i>
+                    <i className="path4"></i>
+                </i>
+            </>,
+            subs: [
+                {
+                    id: 111,
+                    title: FXE_language("new"),
+                    path: `${route}/${FXE_seo(FXE_language("menu").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
+                },
+                {
+                    id: 112,
+                    title: FXE_language("list"),
+                    path: `${route}/${FXE_seo(FXE_language("menu").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
             ]
         },
@@ -165,8 +190,8 @@ export function FXE_sidebar() {
         },
         {
             id: 7,
-            title: FXE_language("service"),
-            path: FXE_language("service"),
+            title: FXE_language("services"),
+            path: FXE_language("services"),
             icon: <>
                 <i className="ki-duotone ki-directbox-default fs-2">
                     <i className="path1"></i>
@@ -190,8 +215,8 @@ export function FXE_sidebar() {
         },
         {
             id: 8,
-            title: FXE_language("setting"),
-            path: FXE_language("setting"),
+            title: FXE_language("settings"),
+            path: FXE_language("settings"),
             icon: <>
                 <i className="ki-duotone ki-directbox-default fs-2">
                     <i className="path1"></i>
@@ -210,6 +235,11 @@ export function FXE_sidebar() {
                     id: 82,
                     title: FXE_language("email"),
                     path: `${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_language("email").toLowerCase()}`,
+                },
+                {
+                    id: 83,
+                    title: FXE_language("menu"),
+                    path: `${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_language("menu").toLowerCase()}`,
                 },
             ]
         },
@@ -240,8 +270,8 @@ export function FXE_sidebar() {
         },
         {
             id: 10,
-            title: FXE_language("document"),
-            path: FXE_language("document"),
+            title: FXE_language("documents"),
+            path: FXE_language("documents"),
             icon: <>
                 <i className="ki-duotone ki-directbox-default fs-2">
                     <i className="path1"></i>
@@ -267,7 +297,7 @@ export function FXE_sidebar() {
 
 
 
-        
+
     ]
 
     const ActiveUrl = (path) => {

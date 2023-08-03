@@ -22,6 +22,8 @@ import { FXE_sign_up } from "./pages/login/sign_up";
 import { FXE_blog_new } from "./pages/blog/new";
 import { FXE_blog_list } from "./pages/blog/list";
 import FXE_seo from "./module/fxe-seo";
+import { FXE_menu_new } from "./pages/menu/new";
+import { FXE_menu_list } from "./pages/menu/list";
 
 function App() {
 
@@ -65,7 +67,8 @@ function App() {
       <Route path={`${route}/${FXE_seo(FXE_language("document").toLowerCase())}/${FXE_seo(FXE_language("new").toLowerCase())}`} element={<FXE_blog_new />} />
       <Route path={`${route}/${FXE_seo(FXE_language("document").toLowerCase())}/${FXE_seo(FXE_language("list").toLowerCase())}`} element={<FXE_blog_list />} />
 
-
+      <Route path={`${route}/${FXE_seo(FXE_language("menu").toLowerCase())}/${FXE_seo(FXE_language("new").toLowerCase())}`} element={<FXE_menu_new />} />
+      <Route path={`${route}/${FXE_seo(FXE_language("menu").toLowerCase())}/${FXE_seo(FXE_language("list").toLowerCase())}`} element={<FXE_menu_list />} />
     </Routes>
   );
 }
