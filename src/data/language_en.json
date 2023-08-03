@@ -43,5 +43,12 @@
     "September": "September",
     "October": "October",
     "November": "November",
-    "December": "December"
+    "December": "December",
+    "Appointments": "Appointments",
+    "Approve": "Approve",
+    "Active": "Active",
+    "Pasive": "Pasive",
+    "Appointment": "Appointment",
+    "Search": "Search",
+    "Add": "Add"
 }

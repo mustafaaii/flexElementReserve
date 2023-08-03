@@ -6,7 +6,7 @@ import FXE_seo from "./fxe-seo";
 export function FXE_sidebar() {
 
 
-    const route = "/dashboard";
+    const route = "";
     const [Active, setActive] = useState(0)
 
     useEffect(() => {
@@ -40,28 +40,15 @@ export function FXE_sidebar() {
         },
         {
             id: 2,
-            title: FXE_language("reservations"),
-            path: FXE_language("reservations"),
+            title: FXE_language("reservation"),
+            path: `${route}/${FXE_language("reservation")}`,
             icon: <>
-                <i className="ki-duotone ki-directbox-default fs-2">
+                <i className="ki-duotone ki-check-square fs-2">
                     <i className="path1"></i>
                     <i className="path2"></i>
-                    <i className="path3"></i>
-                    <i className="path4"></i>
                 </i>
             </>,
-            subs: [
-                {
-                    id: 21,
-                    title: FXE_language("new"),
-                    path: `${route}/${FXE_seo(FXE_language("reservation").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
-                },
-                {
-                    id: 22,
-                    title: FXE_language("list"),
-                    path: `${route}/${FXE_seo(FXE_language("reservation").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
-                },
-            ]
+            subs: []
         },
         {
             id: 11,
@@ -229,17 +216,17 @@ export function FXE_sidebar() {
                 {
                     id: 81,
                     title: FXE_language("authory"),
-                    path: `${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_language("authory").toLowerCase()}`,
+                    path: `${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("authory").toLowerCase())}`,
                 },
                 {
                     id: 82,
                     title: FXE_language("email"),
-                    path: `${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_language("email").toLowerCase()}`,
+                    path: `${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("email").toLowerCase())}`,
                 },
                 {
                     id: 83,
                     title: FXE_language("menu"),
-                    path: `${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_language("menu").toLowerCase()}`,
+                    path: `${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("menu").toLowerCase())}`,
                 },
             ]
         },
@@ -293,11 +280,6 @@ export function FXE_sidebar() {
                 },
             ]
         },
-
-
-
-
-
     ]
 
     const ActiveUrl = (path) => {
@@ -333,7 +315,7 @@ export function FXE_sidebar() {
                                     return (
                                         m.subs.length === 0 ?
                                             <div key={`sidebar_${m.id}_list_${i}`} className="menu-item">
-                                                <Link className={`menu-link ${window.location.pathname === m.path ? "active" : ""}`} to={m.path}>
+                                                <Link className={`menu-link ${window.location.pathname === m.path ? "active" : ""}`} to={m.path.toLowerCase()}>
                                                     <span className="menu-icon">{m.icon}</span>
                                                     <span className="menu-title">{m.title}</span>
                                                 </Link>
@@ -350,7 +332,7 @@ export function FXE_sidebar() {
                                                         m.subs.map((s, n) => {
                                                             return (
                                                                 <div key={`sidebarsub_${s.id}_list_${n}`} className={`menu-item`}>
-                                                                    <Link className={`menu-link ${ActiveUrl(m.path) === s.path ? "active" : ""}`} to={s.path}>
+                                                                    <Link className={`menu-link ${ActiveUrl(m.path) === s.path ? "active" : ""}`} to={s.path.toLowerCase()}>
                                                                         <span className="menu-bullet">
                                                                             <span className="bullet bullet-dot"></span>
                                                                         </span>

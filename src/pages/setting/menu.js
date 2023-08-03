@@ -1,6 +1,6 @@
 import { FXE_layout } from "../fxe_layout";
 
-export function FXE_reservation_list() {
+export function FXE_setting_menu() {
 
 
 

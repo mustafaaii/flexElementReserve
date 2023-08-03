@@ -2,8 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { FXE_about_new } from "./pages/about/new";
 import { FXE_about_list } from "./pages/about/list";
 import { FXE_dashboard_page } from "./pages/dashboard/page";
-import { FXE_reservation_new } from "./pages/reservation/new";
-import { FXE_reservation_list } from "./pages/reservation/list";
+import { FXE_reservation_page } from "./pages/reservation/page";
 import { FXE_language } from "./module/fxe-language";
 import { FXE_product_new } from "./pages/product/new";
 import { FXE_product_list } from "./pages/product/list";
@@ -24,11 +23,13 @@ import { FXE_blog_list } from "./pages/blog/list";
 import FXE_seo from "./module/fxe-seo";
 import { FXE_menu_new } from "./pages/menu/new";
 import { FXE_menu_list } from "./pages/menu/list";
+import { FXE_setting_menu } from "./pages/setting/menu";
+
 
 function App() {
 
 
-  const route = "/dashboard";
+  const route = "/";
   return (
     <Routes>
 
@@ -37,8 +38,7 @@ function App() {
       <Route path={`${route}/${FXE_seo(FXE_language("about").toLowerCase())}/${FXE_seo(FXE_language("new").toLowerCase())}`} element={<FXE_about_new />} />
       <Route path={`${route}/${FXE_seo(FXE_language("about").toLowerCase())}/${FXE_seo(FXE_language("list").toLowerCase())}`} element={<FXE_about_list />} />
 
-      <Route path={`${route}/${FXE_seo(FXE_language("reservation").toLowerCase())}/${FXE_seo(FXE_language("new").toLowerCase())}`} element={<FXE_reservation_new />} />
-      <Route path={`${route}/${FXE_seo(FXE_language("reservation").toLowerCase())}/${FXE_seo(FXE_language("list").toLowerCase())}`} element={<FXE_reservation_list />} />
+      <Route path={`${route}/${FXE_seo(FXE_language("reservation").toLowerCase())}`} element={<FXE_reservation_page />} />
 
       <Route path={`${route}/${FXE_seo(FXE_language("product").toLowerCase())}/${FXE_seo(FXE_language("new").toLowerCase())}`} element={<FXE_product_new />} />
       <Route path={`${route}/${FXE_seo(FXE_language("product").toLowerCase())}/${FXE_seo(FXE_language("list").toLowerCase())}`} element={<FXE_product_list />} />
@@ -57,9 +57,7 @@ function App() {
 
       <Route path={`${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("authory").toLowerCase())}`} element={<FXE_setting_authory />} />
       <Route path={`${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("email").toLowerCase())}`} element={<FXE_setting_email />} />
-
-      <Route path={`${route}/${FXE_seo(FXE_language("login").toLowerCase())}/${FXE_seo(FXE_language("authory").toLowerCase())}`} element={<FXE_sign_in />} />
-      <Route path={`${route}/${FXE_seo(FXE_language("login").toLowerCase())}/${FXE_seo(FXE_language("email").toLowerCase())}`} element={<FXE_sign_up />} />
+      <Route path={`${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("menu").toLowerCase())}`} element={<FXE_setting_menu />} />
 
       <Route path={`${route}/${FXE_seo(FXE_language("blog").toLowerCase())}/${FXE_seo(FXE_language("new").toLowerCase())}`} element={<FXE_blog_new />} />
       <Route path={`${route}/${FXE_seo(FXE_language("blog").toLowerCase())}/${FXE_seo(FXE_language("list").toLowerCase())}`} element={<FXE_blog_list />} />
@@ -69,6 +67,11 @@ function App() {
 
       <Route path={`${route}/${FXE_seo(FXE_language("menu").toLowerCase())}/${FXE_seo(FXE_language("new").toLowerCase())}`} element={<FXE_menu_new />} />
       <Route path={`${route}/${FXE_seo(FXE_language("menu").toLowerCase())}/${FXE_seo(FXE_language("list").toLowerCase())}`} element={<FXE_menu_list />} />
+
+      <Route path={`${route}/${FXE_seo(FXE_language("login").toLowerCase())}/${FXE_seo(FXE_language("sign-in").toLowerCase())}`} element={<FXE_sign_in />} />
+      <Route path={`${route}/${FXE_seo(FXE_language("login").toLowerCase())}/${FXE_seo(FXE_language("sign-up").toLowerCase())}`} element={<FXE_sign_up />} />
+
+
     </Routes>
   );
 }

@@ -43,5 +43,12 @@
     "September": "Eylül",
     "October": "Ekim",
     "November": "Kasım",
-    "December": "Aralık"
+    "December": "Aralık",
+    "Appointments": "Randevuları",
+    "Approve": "Onayla",
+    "Active": "Aktif",
+    "Pasive": "Pasif",
+    "Appointment": "Randevu",
+    "Search": "Ara",
+    "Add": "Ekle"
 }

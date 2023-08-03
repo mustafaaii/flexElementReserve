@@ -1,7 +1,8 @@
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useState } from "react"
 
 export function FXE_input({ id, name, title, type, value, placeholder, response, required, container }) {
-
     return (
         <div className={container.class}>
             <label htmlFor={id} className="form-label">{title}</label>
@@ -9,9 +10,6 @@ export function FXE_input({ id, name, title, type, value, placeholder, response,
         </div>
     )
 }
-
-
-
 export function FXE_textarea({ id, name, title, type, value, placeholder, response, required, container }) {
     return (
         <div className={container.class}>
@@ -20,7 +18,21 @@ export function FXE_textarea({ id, name, title, type, value, placeholder, respon
         </div>
     )
 }
-
+export function FXE_text_editor({ id, title, value, response, container }) {
+    return (
+        <div className={container.class}>
+            <label htmlFor={id} className="form-label">{title}</label>
+            <CKEditor
+                editor={ClassicEditor}
+                data={value}
+                onChange={(event, editor) => {
+                    const data = editor.getData();
+                    response(data)
+                }}
+            />
+        </div>
+    )
+}
 
 
 export function FXE_select({ data, selected, attribute, title, placeholder, response, required, container }) {
