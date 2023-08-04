@@ -50,5 +50,7 @@
     "Pasive": "Pasive",
     "Appointment": "Appointment",
     "Search": "Search",
-    "Add": "Add"
+    "Add": "Add",
+    "company": "Company",
+    "create":"Create"
 }

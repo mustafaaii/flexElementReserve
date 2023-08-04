@@ -2,76 +2,40 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import { FXE_language } from "./fxe-language";
 import FXE_seo from "./fxe-seo";
+import { FXE_route } from "./fxe-route";
 
 export function FXE_sidebar() {
-
-
-    const route = "";
     const [Active, setActive] = useState(0)
-
-    useEffect(() => {
-        document.body.removeAttribute("style")
-        document.body.setAttribute("data-kt-app-layout", "dark-sidebar")
-        document.body.setAttribute("data-kt-app-header-fixed", "true")
-        document.body.setAttribute("data-kt-app-sidebar-enabled", "true")
-        document.body.setAttribute("data-kt-app-sidebar-fixed", "true")
-        document.body.setAttribute("data-kt-app-sidebar-hoverable", "true")
-        document.body.setAttribute("data-kt-app-sidebar-push-header", "true")
-        document.body.setAttribute("data-kt-app-sidebar-push-toolbar", "true")
-        document.body.setAttribute("data-kt-app-sidebar-push-footer", "true")
-        document.body.setAttribute("data-kt-app-toolbar-enabled", "true")
-        document.body.setAttribute("class", "app-default")
-        document.body.setAttribute("data-bs-theme", "light")
-    }, []);
-
-
     const Menu = [
         {
             id: 0,
             title: FXE_language("dashboard"),
-            path: `${route}`,
-            icon: <>
-                <i className="ki-duotone ki-check-square fs-2">
-                    <i className="path1"></i>
-                    <i className="path2"></i>
-                </i>
-            </>,
+            path: `/`,
+            icon: { class: "ki-duotone ki-check-square fs-2 me-2", figure: [1, 2] },
             subs: []
         },
         {
             id: 2,
             title: FXE_language("reservation"),
-            path: `${route}/${FXE_language("reservation")}`,
-            icon: <>
-                <i className="ki-duotone ki-check-square fs-2">
-                    <i className="path1"></i>
-                    <i className="path2"></i>
-                </i>
-            </>,
+            path: `${FXE_route()}/${FXE_language("reservation")}`,
+            icon: { class: "ki-duotone ki-calendar-add fs-2 me-2", figure: [1, 2, 3, 4, 5, 6] },
             subs: []
         },
         {
             id: 11,
             title: FXE_language("menus"),
             path: FXE_language("menus"),
-            icon: <>
-                <i className="ki-duotone ki-directbox-default fs-2">
-                    <i className="path1"></i>
-                    <i className="path2"></i>
-                    <i className="path3"></i>
-                    <i className="path4"></i>
-                </i>
-            </>,
+            icon: { class: "ki-duotone ki-menu fs-2 me-2", figure: [1, 2, 3, 4] },
             subs: [
                 {
                     id: 111,
                     title: FXE_language("new"),
-                    path: `${route}/${FXE_seo(FXE_language("menu").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("menu").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
                 },
                 {
                     id: 112,
                     title: FXE_language("list"),
-                    path: `${route}/${FXE_seo(FXE_language("menu").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("menu").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
             ]
         },
@@ -79,24 +43,17 @@ export function FXE_sidebar() {
             id: 3,
             title: FXE_language("product"),
             path: FXE_language("product"),
-            icon: <>
-                <i className="ki-duotone ki-directbox-default fs-2">
-                    <i className="path1"></i>
-                    <i className="path2"></i>
-                    <i className="path3"></i>
-                    <i className="path4"></i>
-                </i>
-            </>,
+            icon: { class: "ki-duotone ki-basket fs-2 me-2", figure: [1, 2, 3, 4] },
             subs: [
                 {
                     id: 31,
                     title: FXE_language("new"),
-                    path: `${route}/${FXE_seo(FXE_language("product").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("product").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
                 },
                 {
                     id: 32,
                     title: FXE_language("list"),
-                    path: `${route}/${FXE_seo(FXE_language("product").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("product").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
             ]
         },
@@ -104,24 +61,17 @@ export function FXE_sidebar() {
             id: 4,
             title: FXE_language("seo"),
             path: FXE_language("seo"),
-            icon: <>
-                <i className="ki-duotone ki-directbox-default fs-2">
-                    <i className="path1"></i>
-                    <i className="path2"></i>
-                    <i className="path3"></i>
-                    <i className="path4"></i>
-                </i>
-            </>,
+            icon: { class: "ki-duotone ki-key-square fs-2 me-2", figure: [1, 2] },
             subs: [
                 {
                     id: 41,
                     title: FXE_language("new"),
-                    path: `${route}/${FXE_seo(FXE_language("seo").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("seo").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
                 },
                 {
                     id: 42,
                     title: FXE_language("list"),
-                    path: `${route}/${FXE_seo(FXE_language("seo").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("seo").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
             ]
         },
@@ -129,24 +79,17 @@ export function FXE_sidebar() {
             id: 5,
             title: FXE_language("slide"),
             path: FXE_language("slide"),
-            icon: <>
-                <i className="ki-duotone ki-directbox-default fs-2">
-                    <i className="path1"></i>
-                    <i className="path2"></i>
-                    <i className="path3"></i>
-                    <i className="path4"></i>
-                </i>
-            </>,
+            icon: { class: "ki-duotone ki-picture fs-2 me-2", figure: [1, 2] },
             subs: [
                 {
                     id: 51,
                     title: FXE_language("new"),
-                    path: `${route}/${FXE_seo(FXE_language("slide").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("slide").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
                 },
                 {
                     id: 52,
                     title: FXE_language("list"),
-                    path: `${route}/${FXE_seo(FXE_language("slide").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("slide").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
             ]
         },
@@ -154,24 +97,17 @@ export function FXE_sidebar() {
             id: 6,
             title: FXE_language("advert"),
             path: FXE_language("advert"),
-            icon: <>
-                <i className="ki-duotone ki-directbox-default fs-2">
-                    <i className="path1"></i>
-                    <i className="path2"></i>
-                    <i className="path3"></i>
-                    <i className="path4"></i>
-                </i>
-            </>,
+            icon: { class: "ki-duotone ki-abstract-44 fs-2 me-2", figure: [1, 2] },
             subs: [
                 {
                     id: 61,
                     title: FXE_language("new"),
-                    path: `${route}/${FXE_seo(FXE_language("advert").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("advert").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
                 },
                 {
                     id: 62,
                     title: FXE_language("list"),
-                    path: `${route}/${FXE_seo(FXE_language("advert").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("advert").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
             ]
         },
@@ -179,24 +115,17 @@ export function FXE_sidebar() {
             id: 7,
             title: FXE_language("services"),
             path: FXE_language("services"),
-            icon: <>
-                <i className="ki-duotone ki-directbox-default fs-2">
-                    <i className="path1"></i>
-                    <i className="path2"></i>
-                    <i className="path3"></i>
-                    <i className="path4"></i>
-                </i>
-            </>,
+            icon: { class: "ki-duotone ki-parcel fs-2 me-2", figure: [1, 2, 3, 4, 5] },
             subs: [
                 {
                     id: 71,
                     title: FXE_language("new"),
-                    path: `${route}/${FXE_seo(FXE_language("service").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("service").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
                 },
                 {
                     id: 72,
                     title: FXE_language("list"),
-                    path: `${route}/${FXE_seo(FXE_language("service").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("service").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
             ]
         },
@@ -204,29 +133,27 @@ export function FXE_sidebar() {
             id: 8,
             title: FXE_language("settings"),
             path: FXE_language("settings"),
-            icon: <>
-                <i className="ki-duotone ki-directbox-default fs-2">
-                    <i className="path1"></i>
-                    <i className="path2"></i>
-                    <i className="path3"></i>
-                    <i className="path4"></i>
-                </i>
-            </>,
+            icon: { class: "ki-duotone ki-setting-2 fs-2 me-2", figure: [1, 2] },
             subs: [
                 {
                     id: 81,
                     title: FXE_language("authory"),
-                    path: `${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("authory").toLowerCase())}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("authory").toLowerCase())}`,
                 },
                 {
                     id: 82,
                     title: FXE_language("email"),
-                    path: `${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("email").toLowerCase())}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("email").toLowerCase())}`,
                 },
                 {
                     id: 83,
                     title: FXE_language("menu"),
-                    path: `${route}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("menu").toLowerCase())}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("menu").toLowerCase())}`,
+                },
+                {
+                    id: 4,
+                    title: FXE_language("company"),
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("company").toLowerCase())}`,
                 },
             ]
         },
@@ -234,24 +161,17 @@ export function FXE_sidebar() {
             id: 9,
             title: FXE_language("blog"),
             path: FXE_language("blog"),
-            icon: <>
-                <i className="ki-duotone ki-directbox-default fs-2">
-                    <i className="path1"></i>
-                    <i className="path2"></i>
-                    <i className="path3"></i>
-                    <i className="path4"></i>
-                </i>
-            </>,
+            icon: { class: "ki-duotone ki-social-media fs-2 me-2", figure: [1, 2] },
             subs: [
                 {
                     id: 91,
                     title: FXE_language("new"),
-                    path: `${route}/${FXE_seo(FXE_language("blog").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("blog").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
                 },
                 {
                     id: 92,
                     title: FXE_language("list"),
-                    path: `${route}/${FXE_seo(FXE_language("blog").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("blog").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
             ]
         },
@@ -259,29 +179,21 @@ export function FXE_sidebar() {
             id: 10,
             title: FXE_language("documents"),
             path: FXE_language("documents"),
-            icon: <>
-                <i className="ki-duotone ki-directbox-default fs-2">
-                    <i className="path1"></i>
-                    <i className="path2"></i>
-                    <i className="path3"></i>
-                    <i className="path4"></i>
-                </i>
-            </>,
+            icon: { class: "ki-duotone ki-document fs-2 me-2", figure: [1, 2] },
             subs: [
                 {
                     id: 101,
                     title: FXE_language("new"),
-                    path: `${route}/${FXE_seo(FXE_language("document").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("document").toLowerCase())}/${FXE_language("new").toLowerCase()}`,
                 },
                 {
                     id: 102,
                     title: FXE_language("list"),
-                    path: `${route}/${FXE_seo(FXE_language("document").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
+                    path: `${FXE_route()}/${FXE_seo(FXE_language("document").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
             ]
         },
     ]
-
     const ActiveUrl = (path) => {
         const result = Menu.find((item) => { return (item.path === path) })
         if (result !== undefined) {
@@ -291,7 +203,6 @@ export function FXE_sidebar() {
             }
         }
     }
-
     return (
         <>
             <div className="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
@@ -315,15 +226,25 @@ export function FXE_sidebar() {
                                     return (
                                         m.subs.length === 0 ?
                                             <div key={`sidebar_${m.id}_list_${i}`} className="menu-item">
-                                                <Link className={`menu-link ${window.location.pathname === m.path ? "active" : ""}`} to={m.path.toLowerCase()}>
-                                                    <span className="menu-icon">{m.icon}</span>
+                                                <Link className={`menu-link ${window.location.pathname === m.path.toLowerCase() ? "active" : ""}`} to={m.path.toLowerCase()}>
+                                                    <span className="menu-icon">
+                                                        <i className={m.icon.class}>
+                                                            {m.icon.figure.map((d, x) => { return (<i key={`figure_${d}_path_${x}`} className={`path${d}`}></i>) })}
+                                                        </i>
+                                                    </span>
                                                     <span className="menu-title">{m.title}</span>
                                                 </Link>
                                             </div>
                                             :
-                                            <div key={`sidebarsub_${m.id}_list_${i}`} className={`menu-item menu-accordion  ${Active === m.id || ActiveUrl(m.path) === window.location.pathname ? "show here" : ""}`} onClick={() => { !Active ? setActive(m.id) : setActive(0) }}>
+                                            <div
+                                                key={`sidebarsub_${m.id}_list_${i}`}
+                                                className={`menu-item menu-accordion  ${Active === m.id || ActiveUrl(m.path) === window.location.pathname ? "show here" : ""}`}
+                                                onClick={() => { !Active ? setActive(m.id) : setActive(0) }}
+                                            >
                                                 <span className={`menu-link`}>
-                                                    <span className="menu-icon">{m.icon}</span>
+                                                    <i className={m.icon.class}>
+                                                        {m.icon.figure.map((d, x) => { return (<i key={`figure_${d}_path_${x}`} className={`path${d}`}></i>) })}
+                                                    </i>
                                                     <span className="menu-title">{m.title}</span>
                                                     <span className="menu-arrow"></span>
                                                 </span>
@@ -346,24 +267,7 @@ export function FXE_sidebar() {
                                             </div>
                                     )
                                 })
-
-
                             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>

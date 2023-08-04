@@ -6,9 +6,7 @@ import { FXE_header } from "../module/fxe-header";
 import { FXE_sidebar } from "../module/fxe-sidebar";
 import { FXE_toolbar } from "../module/fxe-toolbar";
 
-export function FXE_layout({children}) {
-
-
+export function FXE_layout({ children }) {
     return (
         <div className="d-flex flex-column flex-root app-root">
             <div className="app-page flex-column flex-column-fluid">
@@ -31,6 +29,5 @@ export function FXE_layout({children}) {
             </div>
             <ToastContainer />
         </div>
-
     )
 }
