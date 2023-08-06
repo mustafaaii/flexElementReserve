@@ -55071,7 +55071,7 @@ label.rating-label:hover~.rating-label>i {
     width: var(--bs-stepper-pills-size);
     height: var(--bs-stepper-pills-size);
     border-radius: var(--bs-stepper-icon-border-radius);
-    background-color: var(--bs-stepper-icon-bg-color);
+    background-color: var(--bs-info-light);
     border: var(--bs-stepper-icon-border);
     margin-right: 1.5rem
 }
@@ -55083,7 +55083,7 @@ label.rating-label:hover~.rating-label>i {
 
 .stepper.stepper-pills .stepper-item .stepper-icon .stepper-number {
     font-weight: 600;
-    color: var(--bs-stepper-icon-number-color);
+    color: var(--bs-info);
     font-size: 1.25rem
 }
 
@@ -55112,7 +55112,7 @@ label.rating-label:hover~.rating-label>i {
 
 .stepper.stepper-pills .stepper-item.current .stepper-icon {
     transition: color .2s ease;
-    background-color: var(--bs-stepper-icon-bg-color-current);
+    background-color: var(--bs-indigo);
     border: var(--bs-stepper-icon-border-current)
 }
 
@@ -55138,13 +55138,13 @@ label.rating-label:hover~.rating-label>i {
 .stepper.stepper-pills .stepper-item.completed .stepper-icon,
 .stepper.stepper-pills .stepper-item.current.mark-completed:last-child .stepper-icon {
     transition: color .2s ease;
-    background-color: var(--bs-stepper-icon-bg-color-completed);
+    background-color: var(--bs-info-light);
     border: var(--bs-stepper-icon-border-completed)
 }
 
 .stepper.stepper-pills .stepper-item.completed .stepper-icon .stepper-check,
 .stepper.stepper-pills .stepper-item.current.mark-completed:last-child .stepper-icon .stepper-check {
-    color: var(--bs-stepper-icon-check-color-completed);
+    color: var(--bs-info);
     display: inline-block
 }
 
@@ -62609,6 +62609,15 @@ input[type=file]::-webkit-textfield-decoration-container {
     box-shadow: false;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     height: 43.56px;
+}
+
+
+
+.fxe_signle_select_input.form-control-solid {
+    background-color: var(--bs-gray-100);
+    border-color: var(--bs-gray-100);
+    color: var(--bs-gray-700);
+    transition: color .2s ease;
 }
 
 .fxe_signle_select_modal {

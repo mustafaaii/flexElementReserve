@@ -76,9 +76,17 @@ export function FXE_calendar() {
                                         <i className="path4"></i>
                                         <i className="path5"></i>
                                     </i>
+                                    {
+                                        AllReservation(date, currentMonth + 1, currentYear) > 0 &&
+                                        <div className="d-flex align-items-center justify-content-center shadow-sm fs-7" style={{ position: "absolute", backgroundColor: "#7239ea", color: "#fff", height: "24px", width: "24px", borderRadius: "50%", marginLeft: "35px", marginTop: "-35px" }}>
+                                            {AllReservation(date, currentMonth + 1, currentYear)}
+                                        </div>
+                                    }
+
                                 </div>
+
                             </div>
-                            <div className="row">
+                            <div className="row" hidden>
                                 <div className="d-flex">
                                     <div className="d-flex" style={{ border: "solid 1px #e9e9e9", width: "50%", backgroundColor: "#fcfcfc" }}>
                                         <span className="fw-semibold fs-7 ms-2 text-gray-500 h-30px d-flex align-items-center justify-content-center" style={{ width: "50%" }}>Aktif</span>
@@ -99,27 +107,22 @@ export function FXE_calendar() {
         return calendarBody;
     };
     const handleMonthChange = (event) => {
-        setCurrentMonth(parseInt(event.target.value));
+        setCurrentMonth(parseInt(event));
     };
     const handleYearChange = (event) => {
-        setCurrentYear(parseInt(event.target.value));
+        setCurrentYear(parseInt(event));
     };
     const renderMonthOptions = () => {
-        return months.map((month, index) => (
-            <option key={index} value={index}>
-                {FXE_language(month)}
-
-            </option>
-        ));
+        var l = [];
+        const r = months.map((month, index) => { return (l[index] = { id: (index), value: FXE_language(month) }) });
+        return r;
     };
     const renderYearOptions = () => {
         const currentYear = new Date().getFullYear();
         const years = Array.from({ length: 10 }, (_, index) => currentYear - 5 + index);
-        return years.map((year) => (
-            <option key={year} value={year}>
-                {year}
-            </option>
-        ));
+        var l = [];
+        const r = years.map((year, index) => { return (l[index] = { id: year, value: year }) });
+        return r;
     };
     const data = [
         {
@@ -158,7 +161,70 @@ export function FXE_calendar() {
             </>,
             status: 2
         },
+        {
+            id: 2,
+            days: 12,
+            mount: 8,
+            year: 2023,
+            persons: 5,
+            child: 1,
+            table: 4,
+            time: "12:44",
+            title: "Title Here 1",
+            username: "Mehmet",
+            surname: "Kara",
+            description: <>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </>,
+            status: 2
+        },
+        {
+            id: 3,
+            days: 12,
+            mount: 8,
+            year: 2023,
+            persons: 5,
+            child: 1,
+            table: 4,
+            time: "12:44",
+            title: "Title Here 1",
+            username: "Mehmet",
+            surname: "Kara",
+            description: <>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </>,
+            status: 2
+        },
+        {
+            id: 4,
+            days: 12,
+            mount: 8,
+            year: 2023,
+            persons: 5,
+            child: 1,
+            table: 4,
+            time: "12:44",
+            title: "Title Here 1",
+            username: "Mehmet",
+            surname: "Kara",
+            description: <>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </>,
+            status: 2
+        },
     ]
+    const AllReservation = (d, m, y) => {
+        const r = data.filter((f) => { return (parseInt(f.days) === d && parseInt(f.mount) === m && parseInt(f.year) === y) })
+        if (r === undefined) {
+            return 0;
+        }
+        else {
+            return r.length
+        }
+    }
     const ActiveReservation = (d, m, y) => {
         const r = data.filter((f) => { return (parseInt(f.days) === d && parseInt(f.mount) === m && parseInt(f.year) === y) && f.status === 1 })
         if (r === undefined) {
@@ -348,25 +414,60 @@ export function FXE_calendar() {
                 <div className="col-lg-2 d-flex align-items-center">
                     <h1 id="monthAndYear" className="fw-bold fs-3">{FXE_language(months[currentMonth])}  {currentYear}</h1>
                 </div>
-                <div className="col-lg-3 d-flex justify-content-end">
-                </div>
-                <div className="col-lg-2 d-flex justify-content-end">
-                    <button className="btn btn-primary btn-sm ms-1 me-1 w-120px" onClick={() => { setAppointmentOpen(3000) }}>
-                        <i className="ki-duotone ki-plus fs-2">
-                        </i>
-                        {FXE_language("New") + " " + FXE_language("Appointment")}
+                <div className="col-lg-2"></div>
+                <div className="col-lg-1">
+                    <button className="btn btn-primary btn-sm ms-1 me-1" style={{ height: "43.56px", width: "100%" }} onClick={() => { setAppointmentOpen(3000) }}>
+                        <i className="ki-duotone ki-plus fs-2"></i>{FXE_language("New")}
                     </button>
                 </div>
-                <div className="col-lg-5 d-flex justify-content-end">
-                    <button className="btn btn-info btn-sm ms-1 me-1 w-100px" onClick={handleTodayClick}>{FXE_language("Today")}</button>
-                    <select className="form-select ms-1 me-1" value={currentMonth} onChange={handleMonthChange}>
-                        {renderMonthOptions()}
-                    </select>
-                    <select className="form-select ms-1 me-1" value={currentYear} onChange={handleYearChange}>
-                        {renderYearOptions()}
-                    </select>
-                    <button className="btn btn-primary btn-sm ms-1 me-1 w-100px" onClick={previous}>{FXE_language("Previous")}</button>
-                    <button className="btn btn-primary btn-sm ms-1 w-100px" onClick={next}>{FXE_language("Next")}</button>
+                <div className="col-lg-1">
+                    <button className="btn btn-info btn-sm ms-1 me-1 w-100px" style={{ height: "43.56px" }} onClick={handleTodayClick}>
+                        <i className="ki-duotone ki-calendar fs-2">
+                            <i className="path1"></i>
+                            <i className="path2"></i>
+                        </i>
+                        {FXE_language("Today")}
+                    </button>
+                </div>
+                <div className="col-lg-2">
+                    <FXE_select
+                        data={renderMonthOptions()}
+                        selected={""}
+                        attribute={["id", "value"]}
+                        title={""}
+                        placeholder={"Sector"}
+                        response={(e) => { handleMonthChange(e.id); console.log(e.id) }}
+                        required={true}
+                        container={{ class: "" }}
+                        searchPlaceholder={"Sektör Ara"}
+                        disabled={false}
+                        classname={"form-control"}
+                    />
+                </div>
+                <div className="col-lg-2">
+                    <FXE_select
+                        data={renderYearOptions()}
+                        selected={""}
+                        attribute={["id", "value"]}
+                        title={""}
+                        placeholder={"Sector"}
+                        response={(e) => { handleYearChange(e.id) }}
+                        required={true}
+                        container={{ class: "" }}
+                        searchPlaceholder={"Sektör Ara"}
+                        disabled={false}
+                        classname={"form-control"}
+                    />
+                </div>
+                <div className="col-lg-2 d-flex justify-content-end">
+                    <button className="btn btn-primary btn-sm ms-1 me-1" style={{ height: "43.56px" }} onClick={previous}>
+                        <i className="ki-duotone ki-to-left fs-2"></i>
+                        {FXE_language("Previous")}
+                    </button>
+                    <button className="btn btn-primary btn-sm ms-1 me-1" style={{ height: "43.56px" }} onClick={next}>
+                        {FXE_language("Next")}
+                        <i className="ki-duotone ki-to-right fs-2"></i>
+                    </button>
                 </div>
                 <div className="col-lg-12 mt-2">
                     <table style={{ width: "100%" }}>
@@ -433,6 +534,10 @@ export function FXE_calendar() {
                 overflow={true}
             />
 
+
+
+
+
             <FXE_drawer
                 prompt={4000}
                 width={1100}
@@ -447,18 +552,18 @@ export function FXE_calendar() {
                                 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35].map((d, x) => {
                                     return (
                                         <div className="col-lg-2 mb-5">
-                                            <div 
-                                            
-                                            className="cursor-pointer"
-                                            style={{
-                                                backgroundColor: "#ffffff",
-                                                border: "solid 1px #f5f5f5",
-                                                height: "150px",
-                                                width: "100%",
-                                                backgroundImage: `url(${TableIcon})`,
-                                                backgroundRepeat: "no-repeat",
-                                                backgroundPosition: "center",
-                                            }}>
+                                            <div
+
+                                                className="cursor-pointer"
+                                                style={{
+                                                    backgroundColor: "#ffffff",
+                                                    border: "solid 1px #f5f5f5",
+                                                    height: "150px",
+                                                    width: "100%",
+                                                    backgroundImage: `url(${TableIcon})`,
+                                                    backgroundRepeat: "no-repeat",
+                                                    backgroundPosition: "center",
+                                                }}>
                                                 <div className="row">
                                                     <div className="col-lg-12 d-flex h-75px align-items-start">
                                                         <div className="fw-semibold"></div>
@@ -495,14 +600,11 @@ export function FXE_calendar() {
         </>
     );
 };
-
-
-
-
 export function FXE_drawer({ data, title, open, close, width, overflow, prompt }) {
 
     return (
         <>
+
             <div
                 className={`bg-white drawer drawer-end ${open === prompt ? "drawer-on" : ""}`}
                 data-kt-drawer="true"

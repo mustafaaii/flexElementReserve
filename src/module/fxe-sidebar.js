@@ -12,14 +12,24 @@ export function FXE_sidebar() {
             title: FXE_language("dashboard"),
             path: `/`,
             icon: { class: "ki-duotone ki-check-square fs-2 me-2", figure: [1, 2] },
-            subs: []
+            subs: [],
+            status: 0
         },
         {
             id: 2,
             title: FXE_language("reservation"),
             path: `${FXE_route()}/${FXE_language("reservation")}`,
             icon: { class: "ki-duotone ki-calendar-add fs-2 me-2", figure: [1, 2, 3, 4, 5, 6] },
-            subs: []
+            subs: [],
+            status: 1
+        },
+        {
+            id: 11,
+            title: FXE_language("Transactions"),
+            path: `${FXE_route()}/${FXE_language("Transactions")}`,
+            icon: { class: "ki-duotone ki-book-open fs-2 me-2", figure: [1, 2, 3, 4] },
+            subs: [],
+            status: 1
         },
         {
             id: 11,
@@ -37,7 +47,8 @@ export function FXE_sidebar() {
                     title: FXE_language("list"),
                     path: `${FXE_route()}/${FXE_seo(FXE_language("menu").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
-            ]
+            ],
+            status: 1
         },
         {
             id: 3,
@@ -55,7 +66,8 @@ export function FXE_sidebar() {
                     title: FXE_language("list"),
                     path: `${FXE_route()}/${FXE_seo(FXE_language("product").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
-            ]
+            ],
+            status: 0
         },
         {
             id: 4,
@@ -73,7 +85,8 @@ export function FXE_sidebar() {
                     title: FXE_language("list"),
                     path: `${FXE_route()}/${FXE_seo(FXE_language("seo").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
-            ]
+            ],
+            status: 1
         },
         {
             id: 5,
@@ -91,7 +104,8 @@ export function FXE_sidebar() {
                     title: FXE_language("list"),
                     path: `${FXE_route()}/${FXE_seo(FXE_language("slide").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
-            ]
+            ],
+            status: 1
         },
         {
             id: 6,
@@ -109,7 +123,8 @@ export function FXE_sidebar() {
                     title: FXE_language("list"),
                     path: `${FXE_route()}/${FXE_seo(FXE_language("advert").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
-            ]
+            ],
+            status: 1
         },
         {
             id: 7,
@@ -127,7 +142,8 @@ export function FXE_sidebar() {
                     title: FXE_language("list"),
                     path: `${FXE_route()}/${FXE_seo(FXE_language("service").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
-            ]
+            ],
+            status: 1
         },
         {
             id: 8,
@@ -152,10 +168,11 @@ export function FXE_sidebar() {
                 },
                 {
                     id: 4,
-                    title: FXE_language("company"),
+                    title: FXE_language("company") + " " + FXE_language("create"),
                     path: `${FXE_route()}/${FXE_seo(FXE_language("setting").toLowerCase())}/${FXE_seo(FXE_language("company").toLowerCase())}`,
                 },
-            ]
+            ],
+            status: 1
         },
         {
             id: 9,
@@ -173,7 +190,8 @@ export function FXE_sidebar() {
                     title: FXE_language("list"),
                     path: `${FXE_route()}/${FXE_seo(FXE_language("blog").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
-            ]
+            ],
+            status: 1
         },
         {
             id: 10,
@@ -191,7 +209,8 @@ export function FXE_sidebar() {
                     title: FXE_language("list"),
                     path: `${FXE_route()}/${FXE_seo(FXE_language("document").toLowerCase())}/${FXE_language("list").toLowerCase()}`,
                 },
-            ]
+            ],
+            status: 1
         },
     ]
     const ActiveUrl = (path) => {
@@ -202,6 +221,10 @@ export function FXE_sidebar() {
                 return s.path
             }
         }
+    }
+
+    const toCapitalize = (e) => {
+        return e.charAt(0).toUpperCase() + e.slice(1);
     }
     return (
         <>
@@ -224,47 +247,48 @@ export function FXE_sidebar() {
                             {
                                 Menu.map((m, i) => {
                                     return (
-                                        m.subs.length === 0 ?
-                                            <div key={`sidebar_${m.id}_list_${i}`} className="menu-item">
-                                                <Link className={`menu-link ${window.location.pathname === m.path.toLowerCase() ? "active" : ""}`} to={m.path.toLowerCase()}>
-                                                    <span className="menu-icon">
+                                        m.status === 1 && (
+                                            m.subs.length === 0 ?
+                                                <div key={`sidebar_${m.id}_list_${i}`} className="menu-item">
+                                                    <Link className={`menu-link ${window.location.pathname === m.path.toLowerCase() ? "active" : ""}`} to={m.path.toLowerCase()}>
+                                                        <span className="menu-icon">
+                                                            <i className={m.icon.class}>
+                                                                {m.icon.figure.map((d, x) => { return (<i key={`figure_${d}_path_${x}`} className={`path${d}`}></i>) })}
+                                                            </i>
+                                                        </span>
+                                                        <span className="menu-title">{toCapitalize(m.title)}</span>
+                                                    </Link>
+                                                </div>
+                                                :
+                                                <div
+                                                    key={`sidebarsub_${m.id}_list_${i}`}
+                                                    className={`menu-item menu-accordion  ${Active === m.id || ActiveUrl(m.path) === window.location.pathname ? "show here" : ""}`}
+                                                    onClick={() => { !Active ? setActive(m.id) : setActive(0) }}
+                                                >
+                                                    <span className={`menu-link`}>
                                                         <i className={m.icon.class}>
                                                             {m.icon.figure.map((d, x) => { return (<i key={`figure_${d}_path_${x}`} className={`path${d}`}></i>) })}
                                                         </i>
+                                                        <span className="menu-title ms-3">{toCapitalize(m.title)}</span>
+                                                        <span className="menu-arrow"></span>
                                                     </span>
-                                                    <span className="menu-title">{m.title}</span>
-                                                </Link>
-                                            </div>
-                                            :
-                                            <div
-                                                key={`sidebarsub_${m.id}_list_${i}`}
-                                                className={`menu-item menu-accordion  ${Active === m.id || ActiveUrl(m.path) === window.location.pathname ? "show here" : ""}`}
-                                                onClick={() => { !Active ? setActive(m.id) : setActive(0) }}
-                                            >
-                                                <span className={`menu-link`}>
-                                                    <i className={m.icon.class}>
-                                                        {m.icon.figure.map((d, x) => { return (<i key={`figure_${d}_path_${x}`} className={`path${d}`}></i>) })}
-                                                    </i>
-                                                    <span className="menu-title">{m.title}</span>
-                                                    <span className="menu-arrow"></span>
-                                                </span>
-                                                <div className={`menu-sub menu-sub-accordion ${Active === m.id || ActiveUrl(m.path) === window.location.pathname ? "show" : ""}`}>
-                                                    {
-                                                        m.subs.map((s, n) => {
-                                                            return (
-                                                                <div key={`sidebarsub_${s.id}_list_${n}`} className={`menu-item`}>
-                                                                    <Link className={`menu-link ${ActiveUrl(m.path) === s.path ? "active" : ""}`} to={s.path.toLowerCase()}>
-                                                                        <span className="menu-bullet">
-                                                                            <span className="bullet bullet-dot"></span>
-                                                                        </span>
-                                                                        <span className="menu-title">{s.title}</span>
-                                                                    </Link>
-                                                                </div>
-                                                            )
-                                                        })
-                                                    }
-                                                </div>
-                                            </div>
+                                                    <div className={`menu-sub menu-sub-accordion ${Active === m.id || ActiveUrl(m.path) === window.location.pathname ? "show" : ""}`}>
+                                                        {
+                                                            m.subs.map((s, n) => {
+                                                                return (
+                                                                    <div key={`sidebarsub_${s.id}_list_${n}`} className={`menu-item`}>
+                                                                        <Link className={`menu-link ${ActiveUrl(m.path) === s.path ? "active" : ""}`} to={s.path.toLowerCase()}>
+                                                                            <span className="menu-bullet">
+                                                                                <span className="bullet bullet-dot"></span>
+                                                                            </span>
+                                                                            <span className="menu-title">{toCapitalize(s.title)}</span>
+                                                                        </Link>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                </div>)
                                     )
                                 })
                             }

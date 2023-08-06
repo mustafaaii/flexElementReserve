@@ -3,26 +3,71 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useRef, useState } from "react"
 import { FXE_unique } from './fxe-unique';
 
-export function FXE_input({ id, name, title, type, value, placeholder, response, required, container, style }) {
+export function FXE_input({ id, name, title, type, value, placeholder, response, required, container, style, classname, disabled }) {
     return (
-        <div className={container.class}  >
-            {title === "" || title === null || title === undefined ? "" : <label htmlFor={id} className="form-label">{title}</label>}
-            <input id={id} name={name} type={type} className="form-control" style={style} placeholder={placeholder} value={value} onChange={(e) => { response(e.target.value) }} required={required} />
+        <div className={container.class}>
+            {
+                required === false ?
+                    (title === "" || title === null || title === undefined ? "" : <label htmlFor={id} className={"form-label"}>{title}</label>)
+                    :
+                    title === "" || title === null || title === undefined ? "" :
+                        <label className="d-flex align-items-center fs-7 fw-bold form-label mb-2">
+                            <span className="required">{title}</span>
+                        </label>
+            }
+            <input
+                id={id}
+                name={name}
+                type={type}
+                className={`form-control ${classname}`}
+                style={style}
+                placeholder={placeholder}
+                value={value}
+                onChange={(e) => { response(e.target.value) }}
+                required={required}
+                disabled={disabled}
+            />
         </div>
     )
 }
-export function FXE_textarea({ id, name, title, type, value, placeholder, response, required, container }) {
+export function FXE_textarea({ id, name, title, type, value, placeholder, response, required, container, disabled }) {
     return (
         <div className={container.class}>
-            {title === "" || title === null || title === undefined ? "" : <label htmlFor={id} className="form-label">{title}</label>}
-            <textarea id={id} name={name} type={type} className="form-control" placeholder={placeholder} value={value} onChange={(e) => { response(e.target.value) }} required={required}></textarea>
+            {
+                required === false ?
+                    (title === "" || title === null || title === undefined ? "" : <label htmlFor={id} className={"form-label"}>{title}</label>)
+                    :
+                    title === "" || title === null || title === undefined ? "" :
+                        <label className="d-flex align-items-center fs-6 fw-bold form-label mb-2">
+                            <span className="required">{title}</span>
+                        </label>
+            }
+            <textarea
+                id={id}
+                name={name}
+                type={type}
+                className="form-control"
+                placeholder={placeholder}
+                value={value}
+                onChange={(e) => { response(e.target.value) }}
+                required={required}
+                disabled={disabled}
+            ></textarea>
         </div>
     )
 }
-export function FXE_text_editor({ id, title, value, response, container }) {
+export function FXE_text_editor({ id, title, value, response, container, required }) {
     return (
         <div className={container.class}>
-            <label htmlFor={id} className="form-label">{title}</label>
+            {
+                required === false ?
+                    (title === "" || title === null || title === undefined ? "" : <label htmlFor={id} className={"form-label"}>{title}</label>)
+                    :
+                    title === "" || title === null || title === undefined ? "" :
+                        <label className="d-flex align-items-center fs-6 fw-bold form-label mb-2">
+                            <span className="required">{title}</span>
+                        </label>
+            }
             <CKEditor
                 editor={ClassicEditor}
                 data={value}
@@ -34,7 +79,7 @@ export function FXE_text_editor({ id, title, value, response, container }) {
         </div>
     )
 }
-export function FXE_select({ data, selected, attribute, title, placeholder, container, searchPlaceholder }) {
+export function FXE_select({ data, selected, attribute, title, placeholder, container, searchPlaceholder, required, classname, response }) {
 
     const [Search, setSearch] = useState("")
     const [SelectItem, setSelectItem] = useState(selected === null || selected === undefined || selected === "" ?
@@ -90,7 +135,12 @@ export function FXE_select({ data, selected, attribute, title, placeholder, cont
                 return (
                     <div key={`fxe_list_${d[attribute[0]]}_${x}`}
                         className={`fxe_signle_select_item ${SelectItem[0][attribute[0]] === d[attribute[0]] && "active"}`}
-                        onClick={() => { setSelectItem([{ [attribute[0]]: d[attribute[0]], [attribute[1]]: d[attribute[1]] }]); setActive(0); setSearch("") }}>
+                        onClick={() => {
+                            setSelectItem([{ [attribute[0]]: d[attribute[0]], [attribute[1]]: d[attribute[1]] }]);
+                            setActive(0);
+                            setSearch("");
+                            response({ [attribute[0]]: d[attribute[0]], [attribute[1]]: d[attribute[1]] });
+                        }}>
                         <div className="row">
                             <div className="col-lg-10 h-40px d-flex align-items-center justify-content-start">
                                 {d[attribute[1]]}
@@ -112,9 +162,17 @@ export function FXE_select({ data, selected, attribute, title, placeholder, cont
     }
     return (
         <div className={container.class}>
-            {title === "" || title === null || title === undefined ? "" : <label className="form-label">{title}</label>}
+            {
+                required === false ?
+                    (title === "" || title === null || title === undefined ? "" : <label className={"form-label"}>{title}</label>)
+                    :
+                    title === "" || title === null || title === undefined ? "" :
+                        <label className="d-flex align-items-center fs-7 fw-bold form-label mb-2">
+                            <span className="required">{title}</span>
+                        </label>
+            }
             <div className="fxe_signle_select_container">
-                <div className="fxe_signle_select_input cursor-pointer" onClick={() => { Active === 1 ? setActive(0) : setActive(1) }}>
+                <div className={`fxe_signle_select_input cursor-pointer ${classname}`} onClick={() => { Active === 1 ? setActive(0) : setActive(1) }}>
                     {SelectItem[0][attribute[1]] === "" ? <div className="text-gray-500">{placeholder}</div> : SelectItem[0][attribute[1]]}
                 </div>
                 <div className="fxe_signle_select_close">
@@ -254,18 +312,22 @@ export function FXE_button({ title, type, classname, indicator, response, icon }
     };
     return (
         <>
-            <button onClick={() => { indicator.status === true ? startCountdown() : response() }} type={type} className={classname} data-kt-indicator={indicator.status === true ? `${isCountdownComplete === true ? count > 0 ? "on" : "off" : "off"}` : "off"}>
+            <button onClick={() => { indicator.status === true && indicator.id ? startCountdown() : response() }} type={type} className={classname} data-kt-indicator={indicator.status === true && indicator.id ? `${isCountdownComplete === true ? count > 0 ? "on" : "off" : "off"}` : "off"}>
                 <span className="indicator-label">
                     <div className='d-flex align-items-center h-20px'>
+
                         {
-                            icon.type === "class" ?
-                                <i className={icon.class.name}>
-                                    {icon.class.path.map((d, x) => { return (<i className={`path${d}`}></i>) })}
-                                </i>
+                            icon.class.float === "right" ?
+                                <>
+                                    {title}
+                                    {(icon.type === "class" ? <i className={icon.class.name}>{icon.class.path.map((d, x) => { return (<i key={`button_icon_${d}_list_${x}`} className={`path${d}`}></i>) })}</i> : icon.html)}
+                                </>
                                 :
-                                icon.html
+                                <>
+                                    {(icon.type === "class" ? <i className={icon.class.name}>{icon.class.path.map((d, x) => { return (<i key={`button_icon_${d}_list_${x}`} className={`path${d}`}></i>) })}</i> : icon.html)}
+                                    {title}
+                                </>
                         }
-                        {title}
                     </div>
                 </span>
                 {

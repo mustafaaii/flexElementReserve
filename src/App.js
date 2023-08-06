@@ -1,5 +1,9 @@
 import { Route, Routes } from "react-router-dom";
+import { FXE_route } from "./module/fxe-route";
+import { useEffect } from "react";
 import FXE_seo from "./module/fxe-seo";
+
+
 import { FXE_about_new } from "./pages/about/new";
 import { FXE_about_list } from "./pages/about/list";
 import { FXE_dashboard_page } from "./pages/dashboard/page";
@@ -26,8 +30,7 @@ import { FXE_menu_list } from "./pages/menu/list";
 import { FXE_setting_menu } from "./pages/setting/menu";
 import { FXE_setting_company } from "./pages/setting/company";
 import { FXE_create_company } from "./pages/create/create";
-import { FXE_route } from "./module/fxe-route";
-import { useEffect } from "react";
+import { FXE_transactions } from "./pages/transactions/page";
 
 
 function App() {
@@ -76,6 +79,8 @@ function App() {
       <Route path={`${FXE_route()}/${FXE_seo(FXE_language("login"))}/${FXE_seo(FXE_language("sign-in"))}`} element={<FXE_sign_in />} />
       <Route path={`${FXE_route()}/${FXE_seo(FXE_language("login"))}/${FXE_seo(FXE_language("sign-up"))}`} element={<FXE_sign_up />} />
       <Route path={`${FXE_route()}/${FXE_seo(FXE_language("create"))}/${FXE_seo(FXE_language("company"))}`} element={<FXE_create_company />} />
+
+      <Route path={`${FXE_route()}/${FXE_seo(FXE_language("transactions"))}`} element={<FXE_transactions />} />
     </Routes>
   );
 }
